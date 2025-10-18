@@ -1,0 +1,301 @@
+import React, { useState, useEffect } from 'react';
+import { ArrowRight, Check, Users, Zap, Globe, ChevronDown, ChevronUp } from 'lucide-react';
+
+export default function RB2BLanding() {
+  const [openFaq, setOpenFaq] = useState(null);
+  const [scrollText, setScrollText] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setScrollText(prev => (prev + 1) % 3);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const faqs = [
+    {
+      q: "How does the free trial work?",
+      a: "We give you a 7 day full-featured trial with LinkedIn profiles, companies, all integrations, and validated business emails. After 7 days, the LinkedIn and company profile push to Slack is free forever, up to 150 credits per month."
+    },
+    {
+      q: "What are your pricing plans?",
+      a: "Our paid plans start at $149/mo for up to 300 credits, and scale with your credit consumption needs."
+    },
+    {
+      q: "Is this compliant with privacy laws?",
+      a: "Yes, we are fully compliant with GDPR, CCPA, and CPRA. We have SOC2 Type II certification and use only permissioned data from our publisher network."
+    },
+    {
+      q: "Does it work internationally?",
+      a: "Person-Level ID is US-only due to GDPR/CCPA compliance. However, our Company-Level ID (through Demandbase) is global and can identify companies from any country."
+    }
+  ];
+
+  const integrations = [
+    "Slack", "HubSpot", "Salesforce", "Apollo", "Clay", "LinkedIn",
+    "Outreach", "Zapier", "Webhook", "Gmail", "Pipedrive", "ActiveCampaign"
+  ];
+
+  const scrollTexts = [
+    "WEBSITE TRAFFIC",
+    "ANONYMOUS VISITORS", 
+    "PAGE VIEWS"
+  ];
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-slate-950 via-blue-950 to-slate-950 text-white">
+      {/* Navigation */}
+      <nav className="border-b border-white/10 bg-black/20 backdrop-blur-sm sticky top-0 z-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center h-16">
+            <div className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
+              RB2B
+            </div>
+            <div className="hidden md:flex space-x-8 text-sm">
+              <a href="#features" className="hover:text-blue-400 transition">Features</a>
+              <a href="#pricing" className="hover:text-blue-400 transition">Pricing</a>
+              <a href="#faq" className="hover:text-blue-400 transition">FAQ</a>
+            </div>
+            <button className="bg-gradient-to-r from-blue-500 to-cyan-500 px-6 py-2 rounded-full font-semibold hover:shadow-lg hover:shadow-blue-500/50 transition">
+              Get Started
+            </button>
+          </div>
+        </div>
+      </nav>
+
+      {/* Hero Section */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+        <div className="text-center space-y-8">
+          <div className="inline-block">
+            <div className="text-sm font-semibold text-blue-400 mb-4 tracking-wider">
+              TRUSTED BY 1000+ COMPANIES
+            </div>
+          </div>
+          
+          <h1 className="text-5xl md:text-7xl font-bold leading-tight">
+            Identify{' '}
+            <span className="bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-400 bg-clip-text text-transparent">
+              70-80%
+            </span>
+            {' '}OF YOUR
+          </h1>
+          
+          <div className="h-20 flex items-center justify-center">
+            <div className="text-5xl md:text-7xl font-bold overflow-hidden">
+              <div 
+                className="transition-transform duration-500 ease-in-out"
+                style={{ transform: `translateY(-${scrollText * 100}%)` }}
+              >
+                {scrollTexts.map((text, i) => (
+                  <div key={i} className="h-20 flex items-center justify-center bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
+                    {text}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <p className="text-xl text-gray-300 max-w-2xl mx-auto">
+            Turn anonymous website visitors into qualified leads. Connect with prospects before your competitors do.
+          </p>
+
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4">
+            <button className="group bg-gradient-to-r from-blue-500 to-cyan-500 px-8 py-4 rounded-full font-bold text-lg hover:shadow-2xl hover:shadow-blue-500/50 transition flex items-center gap-2">
+              Get Started, Free Forever
+              <ArrowRight className="group-hover:translate-x-1 transition" />
+            </button>
+            <button className="border-2 border-white/20 px-8 py-4 rounded-full font-semibold hover:bg-white/5 transition">
+              Watch Demo
+            </button>
+          </div>
+
+          <div className="flex justify-center gap-8 pt-8 text-sm text-gray-400">
+            <div className="flex items-center gap-2">
+              <Check className="text-green-400" size={20} />
+              No credit card required
+            </div>
+            <div className="flex items-center gap-2">
+              <Check className="text-green-400" size={20} />
+              5 minute setup
+            </div>
+            <div className="flex items-center gap-2">
+              <Check className="text-green-400" size={20} />
+              Free forever plan
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Process Section */}
+      <div id="features" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+        <h2 className="text-4xl font-bold text-center mb-16">
+          Turn Page Views Into Pipeline In{' '}
+          <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
+            3 Easy Steps
+          </span>
+        </h2>
+
+        <div className="grid md:grid-cols-3 gap-8">
+          {[
+            {
+              num: "01",
+              title: "5 Minute Setup",
+              desc: "Install our lightweight script in your website header. No technical expertise required.",
+              icon: Zap
+            },
+            {
+              num: "02", 
+              title: "Filter and Route",
+              desc: "Automatically segment visitors based on company, behavior, and engagement patterns.",
+              icon: Users
+            },
+            {
+              num: "03",
+              title: "Connect and Activate",
+              desc: "Push enriched data to your CRM and trigger automated workflows instantly.",
+              icon: Globe
+            }
+          ].map((step, i) => (
+            <div key={i} className="relative group">
+              <div className="bg-gradient-to-br from-blue-950/50 to-slate-900/50 p-8 rounded-2xl border border-white/10 hover:border-blue-500/50 transition h-full backdrop-blur-sm">
+                <div className="text-6xl font-bold text-blue-500/20 mb-4">{step.num}</div>
+                <step.icon className="text-blue-400 mb-4" size={40} />
+                <h3 className="text-2xl font-bold mb-3">{step.title}</h3>
+                <p className="text-gray-400">{step.desc}</p>
+              </div>
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-500/0 via-blue-500/5 to-blue-500/0 rounded-2xl opacity-0 group-hover:opacity-100 transition -z-10 blur-xl"></div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Integrations */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+        <div className="text-center mb-12">
+          <h2 className="text-4xl font-bold mb-4">
+            Connect To{' '}
+            <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
+              50+ Apps
+            </span>
+          </h2>
+          <p className="text-gray-400">Seamlessly integrate with your existing tech stack</p>
+        </div>
+
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+          {integrations.map((app, i) => (
+            <div key={i} className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-lg p-6 flex items-center justify-center hover:bg-white/10 transition cursor-pointer">
+              <span className="font-semibold text-sm">{app}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Testimonial */}
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+        <div className="bg-gradient-to-br from-blue-950/50 to-slate-900/50 p-12 rounded-3xl border border-white/10 backdrop-blur-sm">
+          <div className="flex items-start gap-6">
+            <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-full flex-shrink-0"></div>
+            <div>
+              <p className="text-2xl font-light mb-6 leading-relaxed">
+                "RB2B has completely transformed our pipeline generation. We're now identifying and engaging with prospects before they even fill out a form. The ROI has been incredible."
+              </p>
+              <div>
+                <div className="font-bold">Adam Chen</div>
+                <div className="text-gray-400">VP of Sales, TechCorp</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* FAQ Section */}
+      <div id="faq" className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+        <h2 className="text-4xl font-bold text-center mb-12">
+          Frequently Asked{' '}
+          <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
+            Questions
+          </span>
+        </h2>
+
+        <div className="space-y-4">
+          {faqs.map((faq, i) => (
+            <div key={i} className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl overflow-hidden">
+              <button
+                onClick={() => setOpenFaq(openFaq === i ? null : i)}
+                className="w-full px-6 py-5 flex justify-between items-center hover:bg-white/5 transition text-left"
+              >
+                <span className="font-semibold text-lg">{faq.q}</span>
+                {openFaq === i ? <ChevronUp /> : <ChevronDown />}
+              </button>
+              {openFaq === i && (
+                <div className="px-6 pb-5 text-gray-400 border-t border-white/10 pt-5">
+                  {faq.a}
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* CTA Section */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+        <div className="bg-gradient-to-r from-blue-600 to-cyan-600 rounded-3xl p-12 text-center">
+          <h2 className="text-4xl md:text-5xl font-bold mb-6">
+            Start Building Pipeline Today
+          </h2>
+          <p className="text-xl mb-8 opacity-90">
+            Alert your reps, start automated outreach, and add to lead score in under five minutes.
+          </p>
+          <button className="bg-white text-blue-600 px-10 py-4 rounded-full font-bold text-lg hover:shadow-2xl transition">
+            Get Started With Our Free App Today
+          </button>
+        </div>
+      </div>
+
+      {/* Footer */}
+      <footer className="border-t border-white/10 mt-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+          <div className="grid md:grid-cols-4 gap-8">
+            <div>
+              <div className="text-2xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
+                RB2B
+              </div>
+              <p className="text-gray-400 text-sm">
+                Identify and engage with your website visitors before your competition.
+              </p>
+            </div>
+            <div>
+              <h4 className="font-semibold mb-4">Product</h4>
+              <ul className="space-y-2 text-sm text-gray-400">
+                <li><a href="#" className="hover:text-white transition">Features</a></li>
+                <li><a href="#" className="hover:text-white transition">Integrations</a></li>
+                <li><a href="#" className="hover:text-white transition">Pricing</a></li>
+                <li><a href="#" className="hover:text-white transition">Changelog</a></li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="font-semibold mb-4">Resources</h4>
+              <ul className="space-y-2 text-sm text-gray-400">
+                <li><a href="#" className="hover:text-white transition">Documentation</a></li>
+                <li><a href="#" className="hover:text-white transition">Academy</a></li>
+                <li><a href="#" className="hover:text-white transition">Blog</a></li>
+                <li><a href="#" className="hover:text-white transition">Support</a></li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="font-semibold mb-4">Company</h4>
+              <ul className="space-y-2 text-sm text-gray-400">
+                <li><a href="#" className="hover:text-white transition">About</a></li>
+                <li><a href="#" className="hover:text-white transition">Compliance</a></li>
+                <li><a href="#" className="hover:text-white transition">Privacy</a></li>
+                <li><a href="#" className="hover:text-white transition">Terms</a></li>
+              </ul>
+            </div>
+          </div>
+          <div className="border-t border-white/10 mt-12 pt-8 text-center text-gray-400 text-sm">
+            © 2025 RB2B. All rights reserved.
+          </div>
+        </div>
+      </footer>
+    </div>
+  );
